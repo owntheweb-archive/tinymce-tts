@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>TinyMCE TTS Plugin Example</title>
+<link href="./css/content.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../tiny_mce.js"></script>
+<script type="text/javascript">
+//copyright 2011 Christopher Stevens
+
+tinyMCE.init({
+	mode : "textareas",
+	theme : "advanced",
+	plugins : 'tts',
+	theme_advanced_buttons1 : "rate,pitch,volume,emphasis,|,pause",
+	theme_advanced_buttons2 : "undo,redo,|,removeformat",
+	theme_advanced_buttons3 : "",
+	theme_advanced_toolbar_location : "top",
+	theme_advanced_toolbar_align : "left",
+	theme_advanced_statusbar_location : "bottom",
+	theme_advanced_resizing : true,
+	theme_advanced_path : false, //I find this distracting for tts plugin.
+	skin : "o2k7",
+	skin_variant : "silver",
+	content_css : "./css/content.css",
+	formats : {}, //remove all default formats for tts plugin 
+	trim_span_elements : false, //prevent merging of spans that mess up structure for SSML
+	object_resizing : false, //prevent sizing of pause icons in content
+	force_p_newlines : false, //tts plugin will currently not handle <p> tags
+	force_br_newlines : true, //tts plugin will strip <br /> tags
+	forced_root_block : '' //eliminate the outer paragraph tag
+});
+
+//The tts plugin adds the getSSML() command for use with some text-to-speech engines like Cepstral.
+//See it in action here.
+function showSSML() {
+	var ssmlContent = tinyMCE.activeEditor.execCommand('getSSML');
+	
+	//Note: This will not show well in a browser as the SSML tags are not HTML (hence the editing via HTML and converting to SSML here).
+	//This would be a good place to submit to a server side script via ajax request, or whatever else you can think of. :)
+	alert(ssmlContent);
+}
+
+</script>
+</head>
+<body>
+
+<form method="post" action="somepage">
+		<textarea name="content" style="width:100%"></textarea>
+</form>
+
+<p><a href="javascript:;" onclick="showSSML()">Get SSML</a></p>
+
+<p><a href="http://www.christopherstevens.cc/blog/2011/03/07/tts-tinymce/">Visit the TTS Plugin Main Page &raquo;</a></p>
+
+</body>
+</html>
