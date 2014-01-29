@@ -1,4 +1,4 @@
-IMPORTANT: The TinyMCE 4.x version of this plugin is under heavy development (and man is it buggy). Questions, feedback and contributions are welcome!
+IMPORTANT: The TinyMCE 4.x version of this plugin is under heavy development (and man is it buggy... and messy). Questions, feedback and contributions are welcome!
 
 
 The TTS Plugin for TinyMCE is a web based text-to-speech editor that visually formats text with pitch, rate, volume, emphasis, and breaks. It’s able to export basic SSML (Speech Synthesis Markup Language) accepted by text-to-speech engines such as Cepstral voices, and accepted by web services like Voice Forge.
