@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>TinyMCE TTS Plugin Example</title>
+<script src="/js/tinymce/tinymce.min.js"></script>
+<style>
+/* get this out of here, and into plugin css somehow...*/
+.mce-i-pause:before {
+    content: url(./img/iconPause.png);
+}
+
+.mce-i-emphasis:before {
+    content: url(./img/iconEmphasis.png);
+}
+
+.mce-i-volume:before {
+    content: url(./img/iconVolume.png);
+}
+
+.mce-i-pitch:before {
+    content: url(./img/iconPitch.png);
+}
+
+.mce-i-rate:before {
+    content: url(./img/iconRate.png);
+}
+
+.mce-i-voice:before {
+    content: url(./img/iconVoice.png);
+}
+</style>
+<script>
+//copyright 2011 Christopher Stevens
+
+tinyMCE.init({
+	selector: "textarea.editme",
+	theme : 'modern',
+	plugins: [
+        "advlist autolink lists link image charmap print preview anchor",
+        "searchreplace visualblocks code fullscreen",
+        "insertdatetime media table contextmenu paste"
+    ],
+	external_plugins: {
+        "tts": "../tts/plugin.js"
+    },
+    toolbar1: 'voice rate pitch volume emphasis | pause',
+	toolbar2: "undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+	skin : 'lightgray',
+	content_css : "./css/content.css",
+	object_resizing: false, //prevent sizing of pause icons in content
+	force_p_newlines: false, //tts plugin will currently not handle <p> tags
+	forced_root_block: ''//eliminate the outer tag, causes an error with TTS plugin when present (research needed)
+});
+
+//The tts plugin adds the getSSML() command for use with some text-to-speech engines like Cepstral.
+//See it in action here.
+function showSSML() {
+	alert('This is coming soon. In the meantime, choose Tools -> Source code, to see what it looks like before conversion. ;)');
+	//var ssmlContent = tinyMCE.activeEditor.execCommand('getSSML');
+	
+	//Note: This will not show well in a browser as the SSML tags are not HTML (hence the editing via HTML and converting to SSML here).
+	//This would be a good place to submit to a server side script via ajax request, or whatever else you can think of. :)
+	//alert(ssmlContent);
+}
+
+</script>
+</head>
+<body>
+
+<form method="post">
+		<textarea class="editme" rows="20"></textarea>
+</form>
+
+<p><a href="javascript:;" onclick="showSSML()">Get SSML</a></p>
+
+<p><a href="http://www.christopherstevens.cc/blog/2011/03/07/tts-tinymce/">Visit the TTS Plugin Main Page &raquo;</a></p>
+
+</body>
+</html>
